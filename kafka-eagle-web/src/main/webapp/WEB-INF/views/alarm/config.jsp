@@ -92,6 +92,20 @@
 												class="fa fa-info-circle"></i> You can enter multiple email or
 											im addresses using a ";" separator .</label>
 									</div>
+									<div id="div_alarm_corpid" style="display: none"
+                                    	class="form-group">
+                                    	<label>corpid</label> <input id="ke_alarm_corpid"
+                                    									  name="ke_alarm_corpid" class="form-control" placeholder="">
+                                    	<label for="inputError" class="control-label text-danger"><i
+                                    			class="fa fa-info-circle"></i> Your corpid.</label>
+                                    </div>
+                                    <div id="div_alarm_corpsecret" style="display: none"
+                                    	class="form-group">
+                                        <label>corpsecret</label> <input id="ke_alarm_corpsecret"
+                                        								  name="ke_alarm_corpsecret" class="form-control" placeholder="">
+                                        <label for="inputError" class="control-label text-danger"><i
+                                        		class="fa fa-info-circle"></i> Your corpsecret.</label>
+                                    </div>
 									<div class="form-group">
 										<label>Test Message</label>
 										<textarea id="ke_test_msg" name="ke_test_msg"
@@ -143,6 +157,8 @@
 		var ke_alarm_group_name = $("#ke_alarm_group_name").val();
 		var ke_alarm_type = $("#ke_alarm_type").val();
 		var ke_alarm_url = $("#ke_alarm_url").val();
+		var ke_alarm_corpid = $("#ke_alarm_corpid").val();
+		var ke_alarm_corpsecret = $("#ke_alarm_corpsecret").val();
 		var ke_alarm_http = $("input:radio:checked").val(); // option
 		var ke_alarm_address = $("#ke_alarm_address").val();
 

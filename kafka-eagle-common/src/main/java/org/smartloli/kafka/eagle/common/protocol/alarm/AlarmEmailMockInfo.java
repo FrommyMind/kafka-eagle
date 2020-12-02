@@ -32,6 +32,25 @@ public class AlarmEmailMockInfo extends BaseProtocol {
     private String type;
     private String address;
     private String msg;
+    private String corpid;
+    private String corpsecret;
+
+    public String getCorpid() {
+        return corpid;
+    }
+
+    public void setCorpid(String corpid) {
+        this.corpid = corpid;
+    }
+
+    public String getCorpsecret() {
+        return corpsecret;
+    }
+
+    public void setCorpsecret(String corpsecret) {
+        this.corpsecret = corpsecret;
+    }
+
 
     public String getUrl() {
         return url;

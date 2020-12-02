@@ -75,6 +75,18 @@ public class AlertUtils {
         return HttpClientUtils.doPostJson(uri, JSONObject.toJSONString(dingDingMarkdownMessage));
     }
 
+
+    /**
+     * Get new Token from dingding
+     * @return token
+     */
+    public static String getDingDingToken( String corpid, String corpsecret){
+        String uri = "https://oapi.dingtalk.com/gettoken";
+        String dingDingTokenUri=uri+"?corpid=" + corpid + "&corpsecret=" + corpsecret;
+        String result = HttpClientUtils.doGet(dingDingTokenUri);
+        return  JSONObject.parseObject(result).getString("access_token");
+    }
+
     /**
      * create markdown format map, do not point @user, option @all.
      *

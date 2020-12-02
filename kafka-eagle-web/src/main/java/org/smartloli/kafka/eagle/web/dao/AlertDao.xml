@@ -39,6 +39,8 @@
 		<result property="alarmGroup" column="alarm_group" />
 		<result property="alarmType" column="alarm_type" />
 		<result property="alarmUrl" column="alarm_url" />
+		<result property="alarmcorpid" column="alarm_corpid" />
+		<result property="alarmcorpsecret" column="alarm_corpsecret" />
 		<result property="httpMethod" column="http_method" />
 		<result property="alarmAddress" column="alarm_address" />
 		<result property="created" column="created" />

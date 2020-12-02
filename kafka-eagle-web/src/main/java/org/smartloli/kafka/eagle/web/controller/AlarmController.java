@@ -966,6 +966,8 @@ public class AlarmController {
             String type = emailMock.getType();
             String url = emailMock.getUrl();
             String msg = emailMock.getMsg();
+            String corpid = emailMock.getCorpid();
+            String corpsecret = emailMock.getCorpsecret();
             String result = "";
             if (AlarmType.EMAIL.equals(type)) {
                 String address = emailMock.getAddress();
@@ -975,6 +977,10 @@ public class AlarmController {
                 data.put("title", AlarmType.EMAIL_TEST_TITLE);
                 result = AlertUtils.sendTestMsgByEmail(url, data);
             } else if (AlarmType.DingDing.equals(type)) {
+                result = AlertUtils.sendTestMsgByDingDing(url, msg);
+            } else if (AlarmType.DingDingSecure.equals(type)){
+                String dingDingToken = AlertUtils.getDingDingToken(corpid, corpsecret);
+                url = url + dingDingToken;
                 result = AlertUtils.sendTestMsgByDingDing(url, msg);
             } else if (AlarmType.WeChat.equals(type)) {
                 result = AlertUtils.sendTestMsgByWeChat(url, msg);

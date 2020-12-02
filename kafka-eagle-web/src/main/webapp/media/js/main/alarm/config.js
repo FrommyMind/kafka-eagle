@@ -59,6 +59,12 @@ $(document).ready(function () {
             $("#div_alarm_http").hide();
             $("#div_alarm_address").hide();
             $("#ke_alarm_url").attr('placeholder', "https://oapi.dingtalk.com/robot/send?access_token=");
+        } else if (text.indexOf("DingDingSecure") > -1 ){
+            $("#div_alarm_http").hide();
+            $("#div_alarm_address").hide();
+//            $("#ke_alarm_url").hide();
+            $("#div_alarm_corpid").show();
+            $("#div_alarm_corpsecret").show();
         } else if (text.indexOf("WeChat") > -1) {
             $("#div_alarm_http").hide();
             $("#div_alarm_address").hide();
