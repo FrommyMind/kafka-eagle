@@ -39,8 +39,8 @@
 		<result property="alarmGroup" column="alarm_group" />
 		<result property="alarmType" column="alarm_type" />
 		<result property="alarmUrl" column="alarm_url" />
-		<result property="alarmcorpid" column="alarm_corpid" />
-		<result property="alarmcorpsecret" column="alarm_corpsecret" />
+		<result property="alarmCorpid" column="alarm_corpid" />
+		<result property="alarmCorpsecret" column="alarm_corpsecret" />
 		<result property="httpMethod" column="http_method" />
 		<result property="alarmAddress" column="alarm_address" />
 		<result property="created" column="created" />
@@ -50,7 +50,7 @@
 	<insert id="insertOrUpdateAlarmConfig" parameterType="org.smartloli.kafka.eagle.common.protocol.alarm.AlarmConfigInfo">
 		replace into
 		ke_alarm_config(`cluster`,`alarm_group`,`alarm_type`,`alarm_url`,`http_method`,`alarm_address`,`created`,`modify`)
-		values(#{cluster},#{alarmGroup},#{alarmType},#{alarmUrl},#{httpMethod},#{alarmAddress},#{created},#{modify})
+		values(#{cluster},#{alarmGroup},#{alarmType},#{alarmUrl},#{alarmCorpid},#{alarmCorpsecret},#{httpMethod},#{alarmAddress},#{created},#{modify})
 	</insert>
 
 	<select id="findAlarmConfigByGroupName" parameterType="map" resultType="Integer">

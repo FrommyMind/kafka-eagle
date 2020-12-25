@@ -55,16 +55,16 @@ $(document).ready(function () {
             $("#div_alarm_http").hide();
             $("#div_alarm_address").show();
             $("#ke_alarm_url").attr('placeholder', "http://127.0.0.1:10086/webhook");
-        } else if (text.indexOf("DingDing") > -1) {
-            $("#div_alarm_http").hide();
-            $("#div_alarm_address").hide();
-            $("#ke_alarm_url").attr('placeholder', "https://oapi.dingtalk.com/robot/send?access_token=");
         } else if (text.indexOf("DingDingSecure") > -1 ){
             $("#div_alarm_http").hide();
             $("#div_alarm_address").hide();
 //            $("#ke_alarm_url").hide();
             $("#div_alarm_corpid").show();
             $("#div_alarm_corpsecret").show();
+        } else if (text.indexOf("DingDing") > -1) {
+                   $("#div_alarm_http").hide();
+                   $("#div_alarm_address").hide();
+                   $("#ke_alarm_url").attr('placeholder', "https://oapi.dingtalk.com/robot/send?access_token=");
         } else if (text.indexOf("WeChat") > -1) {
             $("#div_alarm_http").hide();
             $("#div_alarm_address").hide();
@@ -76,6 +76,8 @@ $(document).ready(function () {
         var type = $("#ke_alarm_type").val();
         var url = $("#ke_alarm_url").val();
         var address = $("#ke_alarm_address").val();
+        var corpid = $('#ke_alarm_corpid').val();
+        var corpsecret = $('#ke_alarm_corpsecret').val();
         var msg = $("#ke_test_msg").val();
         if (type.length == 0 || url.length == 0 || msg.length == 0) {
             $("#alert_msg_alarm_send").show();
@@ -91,6 +93,8 @@ $(document).ready(function () {
                     "url": url,
                     "type": type,
                     "address": address,
+                    "corpid": corpid,
+                    "corpsecret": corpsecret,
                     "msg": msg
                 }),
                 url: '/alarm/config/test/send/ajax',

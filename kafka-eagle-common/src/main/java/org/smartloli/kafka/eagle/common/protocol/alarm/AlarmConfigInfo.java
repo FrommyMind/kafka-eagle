@@ -32,6 +32,8 @@ public class AlarmConfigInfo extends BaseProtocol {
 	private String alarmGroup;
 	private String alarmType;
 	private String alarmUrl;
+	private String alarmCorpsecret;
+	private String alarmCorpid;
 	private String httpMethod;
 	private String alarmAddress;
 	private String created;
@@ -67,6 +69,22 @@ public class AlarmConfigInfo extends BaseProtocol {
 
 	public void setAlarmUrl(String alarmUrl) {
 		this.alarmUrl = alarmUrl;
+	}
+
+	public String getAlarmCorpsecret() {
+		return alarmCorpsecret;
+	}
+
+	public void setAlarmCorpsecret(String alarmCorpsecret) {
+		this.alarmCorpsecret = alarmCorpsecret;
+	}
+
+	public String getAlarmCorpid() {
+		return alarmCorpid;
+	}
+
+	public void setAlarmCorpid(String alarmCorpid) {
+		this.alarmCorpid = alarmCorpid;
 	}
 
 	public String getHttpMethod() {

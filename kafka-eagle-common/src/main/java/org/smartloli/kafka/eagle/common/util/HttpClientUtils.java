@@ -20,10 +20,13 @@ package org.smartloli.kafka.eagle.common.util;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -44,7 +47,19 @@ public class HttpClientUtils {
 	private HttpClientUtils() {
 
 	}
-
+	public static void setProxy(HttpRequestBase httpRequestBase){
+		HttpHost proxy;
+		String osName = System.getProperties().getProperty(KConstants.OperateSystem.OS_NAME.getValue());
+		String proxyAddress = SystemConfigUtils.getProperty("http.proxy.address");
+		int proxyPort = SystemConfigUtils.getIntProperty("http.proxy.port");
+		if(proxyAddress != null && proxyPort != 0){
+			proxy = new HttpHost(proxyAddress,proxyPort,
+					SystemConfigUtils.getProperty("http.proxy.schema"));
+			ErrorUtils.print(HttpClientUtils.class).info("Proxy is :" + proxy.toString());
+			if(!proxy.getHostName().isEmpty() && !proxy.toString().equals("") && osName.contains(KConstants.OperateSystem.LINUX.getValue()))
+				httpRequestBase.setConfig(RequestConfig.custom().setProxy(proxy).build());
+		}
+	}
 	/**
 	 * Send request by get method.
 	 * 
@@ -55,9 +70,11 @@ public class HttpClientUtils {
 		String result = "";
 		CloseableHttpClient client = null;
 		CloseableHttpResponse response = null;
+
 		try {
 			HttpGet httpGet = new HttpGet(uri);
 			client = HttpClients.createDefault();
+			setProxy(httpGet);
 			response = client.execute(httpGet);
 			HttpEntity entity = response.getEntity();
 			result = EntityUtils.toString(entity);
@@ -95,6 +112,7 @@ public class HttpClientUtils {
 		try {
 			HttpPost httpPost = new HttpPost(uri);
 			httpPost.setEntity(new UrlEncodedFormEntity(parames, "UTF-8"));
+			setProxy(httpPost);
 			client = HttpClients.createDefault();
 			response = client.execute(httpPost);
 			HttpEntity entity = response.getEntity();
@@ -130,7 +148,10 @@ public class HttpClientUtils {
 			HttpPost httpPost = new HttpPost(uri);
 			httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
 			httpPost.setEntity(new StringEntity(data, ContentType.create("text/json", "UTF-8")));
+			setProxy(httpPost);
 			client = HttpClients.createDefault();
+			System.out.println(httpPost.toString());
+			System.out.println(httpPost.getEntity().toString());
 			response = client.execute(httpPost);
 			HttpEntity entity = response.getEntity();
 			result = EntityUtils.toString(entity);
